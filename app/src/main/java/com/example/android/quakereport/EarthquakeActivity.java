@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
      * 地震列表的适配器
      */
     private EarthquakeAdapter mAdapter;
+
+    /** 列表为空时显示的 TextView */
+    private TextView mEmptyStateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
+
         // 引用 LoaderManager，以便与 loader 进行交互。
         LoaderManager loaderManager = getLoaderManager();
 
@@ -95,6 +102,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
+        // Set empty state text to display "No earthquakes found."
+        mEmptyStateTextView.setText(R.string.no_earthquakes);
+
         // 清除之前地震数据的适配器
         mAdapter.clear();
 
