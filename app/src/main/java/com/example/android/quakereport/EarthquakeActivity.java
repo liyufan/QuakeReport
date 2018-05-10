@@ -102,7 +102,11 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
-        // Set empty state text to display "No earthquakes found."
+        // 因数据已加载，隐藏加载指示符
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
+
+        // 将空状态文本设置为显示“未发现地震。(No earthquakes found.)”
         mEmptyStateTextView.setText(R.string.no_earthquakes);
 
         // 清除之前地震数据的适配器
