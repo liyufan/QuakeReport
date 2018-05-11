@@ -36,7 +36,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EarthquakeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Earthquake>>,SharedPreferences.OnSharedPreferenceChangeListener {
+public class EarthquakeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Earthquake>>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     /**
@@ -194,7 +194,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.settings_min_magnitude_key)) ||
-                key.equals(getString(R.string.settings_order_by_key))){
+                key.equals(getString(R.string.settings_order_by_key))) {
             // Clear the ListView as a new query will be kicked off
             mAdapter.clear();
 
