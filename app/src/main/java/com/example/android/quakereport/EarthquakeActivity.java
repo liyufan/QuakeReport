@@ -39,12 +39,15 @@ import java.util.List;
 public class EarthquakeActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Earthquake>>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
+
     /**
      * 地震 loader ID 的常量值。我们可选择任意整数。
      * 仅当使用多个 loader 时该设置才起作用。
      */
     private static final int EARTHQUAKE_LOADER_ID = 1;
+
     private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query";
+
     /**
      * 地震列表的适配器
      */
@@ -61,9 +64,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         setContentView(R.layout.earthquake_activity);
 
         // 在布局中查找 {@link ListView} 的引用
-        ListView earthquakeListView = (ListView) findViewById(R.id.list);
+        ListView earthquakeListView = findViewById(R.id.list);
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         earthquakeListView.setEmptyView(mEmptyStateTextView);
 
         // 创建新适配器，将空地震列表作为输入
@@ -157,9 +160,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
         // 将空状态文本设置为显示“未发现地震。(No earthquakes found.)”
         mEmptyStateTextView.setText(R.string.no_earthquakes);
-
-        // 清除之前地震数据的适配器
-        mAdapter.clear();
 
         // 如果存在 {@link Earthquake} 的有效列表，则将其添加到适配器的
         // 数据集。这将触发 ListView 执行更新。
